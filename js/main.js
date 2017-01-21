@@ -87,15 +87,12 @@ function validate() {
         }
     }
 
-    /*
+    
     let times = document.getElementsByClassName('time');
     if (!times[0].value && !times[1].value && !times[2].value && !times[0].value.length && !times[1].value.length && !times[2].value.length) {
-        elems[i].className += " error";
         emptytimes = true;
     }
 
-     */
-    /*
     let distance = document.getElementById('distance')
     if (!distance.value) {
         emptydistance = true;
@@ -105,7 +102,7 @@ function validate() {
         allgood = false;
     }
 
-     */
+     
     //If any element did not meet the requirements, prevent it from being submitted and display an alert
     if (!allgood) {
         document.getElementById("pangbutton").disabled = true;
@@ -126,8 +123,7 @@ $(document).ready(function() {
                 oDistance: $("#distance").val(),
                 oTime: printTime(),
                 aDistance: wfdist(),
-                aTime: wftime(),
-                city: "Duckburg"
+                aTime: wftime()
             },
             function(data, status) {
                 if(status != "success"){

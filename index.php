@@ -85,7 +85,7 @@ do{
 						<div class="row">
 							<div class="form-group col-md-12 distance">
 								<label for="">Distance</label>
-								<input type="text" class="form-control" id="distance" placeholder="Distance" onkeyup="checknum(this)" required>
+								<input type="text" class="form-control" id="distance" placeholder="Distance" onkeyup="checknum(this)">
 							</div>
 						</div>
 						<input type="hidden" id="key" value="<?php echo $key; ?>">
