@@ -96,7 +96,7 @@ do{
 					</form>
 				</div>
 				<div class="col-md-8 print_wide">
-					<legend>Results</legend>
+					<legend>Results <div id="date"></div></legend>
 					<div>
 						<table class="table table-responsive">
 							<thead>
@@ -126,6 +126,7 @@ do{
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 		<script src="/js/main.js" type ="text/javascript"></script>
+		<script src="/js/date.js" type ="text/javascript"></script>
 		<script src="/js/sortTable.js" type ="text/javascript"></script>
 	</body>
 	</body>

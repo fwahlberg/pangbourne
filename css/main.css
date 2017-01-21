@@ -33,6 +33,9 @@ body{
 	color: #fff;
 	
  }
+ #date{
+	 display: none;
+ }
  .btn-file input[type=file]{
 	font-weight: bold;
  }
@@ -71,5 +74,8 @@ body{
    }
    .shareLink{
     display: none;
+   }
+   #date{
+	   display: inline-block;
    }
 }
