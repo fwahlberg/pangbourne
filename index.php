@@ -73,15 +73,15 @@ do{
 							</div>
 						</div>
 						<div class="row">
-							<div class="form-group col-md-4 hrs">
+							<div class="form-group col-md-4 hrs col-xs-4">
 								<label for="">Hours</label>
 								<input type="text" class="form-control time" id="hours" onkeyup="checknum(this)">
 							</div>
-							<div class="form-group col-md-4 mins">
+							<div class="form-group col-md-4 mins col-xs-4">
 								<label for="">Minutes</label>
 								<input type="text" class="form-control time" id="minutes" onkeyup="checknum(this)">
 							</div>
-							<div class="form-group col-md-4 mins">
+							<div class="form-group col-md-4 mins col-xs-4">
 								<label for="">Seconds</label>
 								<input type="text" class="form-control time" id="seconds" onkeyup="checknum(this)">
 							</div>
