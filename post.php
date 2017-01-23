@@ -9,12 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$oTime     = test_input($_POST["oTime"]);
 	$aDistance = test_input($_POST["aDistance"]);
 	$aTime     = test_input($_POST["aTime"]);
+	$split     = test_input($_POST["split"]);
 
 
 
 // prepare and bind
-$stmt = $conn->prepare("INSERT INTO adjustmentinfo (idKey, aFactor, name, weight, oDistance, oTime, aDistance, aTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("ssssssss", $id, $aFactor, $name, $weight, $oDistance, $oTime, $aDistance, $aTime);
+$stmt = $conn->prepare("INSERT INTO adjustmentinfo (idKey, aFactor, name, weight, oDistance, oTime, aDistance, aTime, split) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("sssssssss", $id, $aFactor, $name, $weight, $oDistance, $oTime, $aDistance, $aTime, $split);
 
 // set parameters and execute
 $stmt->execute();

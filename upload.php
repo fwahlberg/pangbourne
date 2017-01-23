@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" href="/css/main.css">
 		<link rel="icon" href="/img/favicon.png">
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -29,6 +30,14 @@
 	<body>
 		<div class="container">
 			<img src="/img/logo.png" id="logo" class="logo"/>
+			<div class="row top-bar">
+					<ul class="">
+				      <li><a href="/">Home</a></li>
+				      <li class="active"><a href="/upload.php">Upload</a></li>
+				      <li><a href="/about.php">About</a></li>
+				      <li><a href="/results">Results</a></li>
+				    </ul>
+			</div>
 			<div id="container">
 				<div class="col-md-12 print_wide">
                 <?php if(isset($_POST["submit"])){?>
@@ -72,7 +81,7 @@
 			</div>
 		</div>
 		<!-- jQuery -->
-		<script src="//code.jquery.com/jquery.js"></script>
+		<script src="/js/jquery-3.1.1.min.js"></script>
         <script>
 $(document).ready(function() {
     $.ajax({

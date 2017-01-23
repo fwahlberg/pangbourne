@@ -1,16 +1,18 @@
 document.getElementById("pangbutton").disabled = true;
 let errors = "";
-
+let oDist     = document.getElementById('distance').value;
+let oTime     = printTime();
 function calculator() {
-    let oDist = document.getElementById('distance').value;
-    let name = document.getElementById('name').value;
-    let weight = document.getElementById('weight').value;
-    let wf = weightf();
-    let wadist = wfdist();
-    let oTime = printTime();
-    let watime = wftime();
-    let outputer = "<tr><td><b>" + toTitleCase(name) + "</b></td><td>" + weight + "</td><td>" + oDist + "</td><td>" + oTime + "</td><td>" + wadist + "</td><td>" + watime + "</td></tr>";
-    let div = document.getElementById('resultArea');
+    let oDist     = document.getElementById('distance').value;
+    let oTime     = printTime();
+    let name      = document.getElementById('name').value;
+    let weight    = document.getElementById('weight').value;
+    let split     = splittime();
+    let wf        = weightf();
+    let wadist    = wfdist();
+    let watime    = wftime();    
+    let outputer  = "<tr><td><b>" + toTitleCase(name) + "</b></td><td>" + weight + "</td><td>" + oDist + "</td><td>" + oTime + "</td><td>" + split + "</td><td>" + wadist + "</td><td>" + watime + "</td></tr>";
+    let div       = document.getElementById('resultArea');
     div.innerHTML = div.innerHTML + outputer;
 };
 
@@ -23,6 +25,19 @@ function weightf() {
     return wf;
 };
 
+/*function calculatesecs(secs){
+   secs = secs.split(":");
+   return secs[0] * (60 * 60) + secs[1] * 60 + secs[2] * 1;
+};*/
+function splittime() {
+    let time = timetosecs();
+    if(time == 0 || document.getElementById('distance').value == 0){
+        return 0;
+    }
+    time = 500 * (time/document.getElementById('distance').value);
+    return secstotime(time);
+};
+
 function timetosecs() {
     let hrs = document.getElementById('hours').value;
     let mins = document.getElementById('minutes').value;
@@ -31,11 +46,16 @@ function timetosecs() {
 };
 
 function secstotime(totalSeconds) {
+    if (totalSeconds == "Infinity"){
+        return 0;
+    } else{
     let hours = Math.floor(totalSeconds / 3600);
     totalSeconds %= 3600;
     let minutes = Math.floor(totalSeconds / 60);
     let seconds = Math.floor((totalSeconds % 60) * 10) / 10;
     return hours + ":" + minutes + ":" + seconds;
+    }
+    
 };
 
 function wfdist() {
@@ -52,15 +72,7 @@ function wftime() {
     return secstotime(wf * time);
 };
 
-function checknum(number) {
-    if (isNaN(number.value)) {
-        errors = "<li>" + toTitleCase(number.id) + " must be a number!</li>";
-        document.getElementById('error').innerHTML = errors;
-    } else {
-        document.getElementById('error').innerHTML = "";
-        errors = "";
-    }
-};
+
 
 function printTime() {
     let oTime = timetosecs();
@@ -73,42 +85,11 @@ function toTitleCase(str) {
     });
 };
 
-function validate() {
-    let elems = document.getElementsByClassName('required');
-    let allgood = true;
-    let emptytimes = false;
-    let emptydistance = false;
 
-    //Loop through all elements with this class
-    for (var i = 0; i < elems.length; i++) {
-        if (!elems[i].value || !elems[i].value.length) {
-            elems[i].className += " error";
-            allgood = false;
-        }
-    }
 
-    
-    let times = document.getElementsByClassName('time');
-    if (!times[0].value && !times[1].value && !times[2].value && !times[0].value.length && !times[1].value.length && !times[2].value.length) {
-        emptytimes = true;
-    }
-
-    let distance = document.getElementById('distance')
-    if (!distance.value) {
-        emptydistance = true;
-    }
-
-    if (emptydistance && emptytimes) {
-        allgood = false;
-    }
-
-     
-    //If any element did not meet the requirements, prevent it from being submitted and display an alert
-    if (!allgood) {
-        document.getElementById("pangbutton").disabled = true;
-    } else {
-        document.getElementById("pangbutton").disabled = false;
-    }
+function failedimage() {
+    document.getElementById("logo").style.display = "none";
+    document.getElementById("title").style.display = "block";
 };
 
 
@@ -123,7 +104,8 @@ $(document).ready(function() {
                 oDistance: $("#distance").val(),
                 oTime: printTime(),
                 aDistance: wfdist(),
-                aTime: wftime()
+                aTime: wftime(),
+                split: splittime()
             },
             function(data, status) {
                 if(status != "success"){
