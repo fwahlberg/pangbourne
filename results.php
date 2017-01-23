@@ -3,15 +3,14 @@ include ('includes/db.php');
 $id = test_input($_GET["id"]);
 $sql = "SELECT name, weight, oDistance, oTime, aDistance, aTime FROM adjustmentinfo WHERE idKey = '" . $id . "'";
 $result = $conn->query($sql);
-
+$results=false;
 if ($result->num_rows > 0) {
+	$results = true;
     // output data of each row
     $data = "";
     while($row = $result->fetch_assoc()) {
         $data .= "<tr><td>" . $row["name"] . "</td><td>" . $row["weight"] . "</td><td>" . $row["oDistance"] . "</td><td>" . $row["oTime"] . "</td><td>" . $row["aDistance"] . "</td><td>" . $row["aTime"] . "</td></tr>";
     }
-} else {
-    echo "0 results";
 }
 $conn->close();
 ?>
@@ -21,7 +20,9 @@ $conn->close();
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Pangbourne Rowing Manager</title>
+		<title>Results - Weight Adjustment Calculator | Pangbourne Rowing</title>
+		<meta name="robots" content="noindex" />
+
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" href="/css/main.css">
@@ -50,6 +51,9 @@ $conn->close();
 				<div class="col-md-12 print_wide">
 					<legend>Results</legend>
 					<div>
+						<?php 
+						if($results == true){?>
+						
 						<table class="table table-hover table-responsive">
 							<thead>
 								<tr>
@@ -60,6 +64,10 @@ $conn->close();
 								<?php echo $data; ?>
 							</tbody>
 						</table>
+						<?} else{?>
+						<h1 id="notfound">Sorry, no results were found</h1>
+						<p id="notfoundmessage">Are you sure you have the right link?</p>
+						<?}?>
 					</div>
 				</div>		
 				<div class="row shareLink col-md-12" id="shareLink">	
@@ -69,7 +77,7 @@ $conn->close();
 			</div>
 		</div>
 		<!-- jQuery -->
-		<script src="//code.jquery.com/jquery.js"></script>
+		<script src="/js/jquery-3.1.1.min.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

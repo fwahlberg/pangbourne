@@ -3,6 +3,20 @@ body{
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+#title{
+  text-align: center;
+  color: #b71234;
+  display: none;
+}
+#notfound{
+  text-align: center;
+  color: #b71234;
+}
+#notfoundmessage{
+  text-align: center;
+  color: #726C6C;
+  font-size: 1.4em;
+}
 .container>#logo{
 	margin: auto;
     display: table;

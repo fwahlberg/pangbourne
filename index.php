@@ -19,7 +19,10 @@ do{
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Pangbourne Rowing Manager</title>
+		<title>Weight Adjustment Calculator | Pangbourne Rowing</title>
+		<meta name="description" content="Record and share weight adjusted results in an instant with the Pangbourne's online calculator."/>
+		<meta name="Keywords" content="rowing, weight adjustment, pangbourne, pangbourne rowing, calculator, weight adjustment calculator, share, instant share"/>
+
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/main.css">
@@ -51,6 +54,7 @@ do{
 	<body>
 		<div class="container">
 			<img src="/img/logo.png" id="logo" class="logo"/>
+			<h1 id="title">Weight Adjustment Calculator | Pangbourne Rowing</h1>
 			<div id="container">
 				<div class="col-md-4 input">
 					<form action="" method="POST" role="form" id="weightadj" onkeyup="validate();" onsubmit="event.preventDefault(); this.reset(); ">
@@ -121,7 +125,7 @@ do{
 			</div>
 		</div>
 		<!-- jQuery -->
-		<script src="//code.jquery.com/jquery.js"></script>
+		<script src="/js/jquery-3.1.1.min.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
