@@ -51,8 +51,8 @@ function secstotime(totalSeconds) {
     } else{
     let hours = Math.floor(totalSeconds / 3600);
     totalSeconds %= 3600;
-    let minutes = Math.floor(totalSeconds / 60);
-    let seconds = Math.floor((totalSeconds % 60) * 10) / 10;
+    let minutes = pad(Math.floor(totalSeconds / 60));
+    let seconds = pad(Math.round((totalSeconds % 60) * 10) / 10)
     return hours + ":" + minutes + ":" + seconds;
     }
     
@@ -72,7 +72,11 @@ function wftime() {
     return secstotime(wf * time);
 };
 
-
+function pad(num) {
+    var s = num+"";
+    while (s.length < 2) s = "0" + s;
+    return s;
+}
 
 function printTime() {
     let oTime = timetosecs();

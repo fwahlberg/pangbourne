@@ -123,4 +123,7 @@ body{
    #date{
 	   display: inline-block;
    }
+   .top-bar{
+    display: none;
+   }
 }
