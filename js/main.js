@@ -1,48 +1,45 @@
-document.getElementById("pangbutton").disabled = true;
-let errors = "";
-let oDist     = document.getElementById('distance').value;
-let oTime     = printTime();
-function calculator() {
-    let oDist     = document.getElementById('distance').value;
-    let oTime     = printTime();
-    let name      = document.getElementById('name').value;
-    let weight    = document.getElementById('weight').value;
-    let split     = splittime();
-    let wf        = weightf();
-    let wadist    = wfdist();
-    let watime    = wftime();    
-    let outputer  = "<tr><td><b>" + toTitleCase(name) + "</b></td><td>" + weight + "</td><td>" + oDist + "</td><td>" + oTime + "</td><td>" + split + "</td><td>" + wadist + "</td><td>" + watime + "</td></tr>";
+/*
+DOM selectors
+ */
+const name     = document.querySelector('#name');
+const weight   = document.querySelector('#weight');
+const hours    = document.querySelector('#hours');
+const minutes  = document.querySelector('#minutes');
+const seconds  = document.querySelector('#seconds');
+const distance = document.querySelector('#distance');
+const pangButton = document.querySelector('#pangbutton');
+pangButton.disabled = true;
+
+function output() {  
+    let outputer  = "<tr><td><b>" + htmlEntities(toTitleCase(name.value)) + "</b></td><td>" + htmlEntities(weight.value) + "</td><td>" + htmlEntities(distance.value) + "</td><td>" + printTime() + "</td><td>" + splittime() + "</td><td>" + wfdist() + "</td><td>" + wftime() + "</td></tr>";
     let div       = document.getElementById('resultArea');
     div.innerHTML = div.innerHTML + outputer;
 };
-
+/*
+Weight Functions
+ */
 function weightf() {
-    let kg = document.getElementById('weight').value;
+    let kg = weight.value;
     kg = kg * 2.20462;
     let wf = (kg / 270);
     wf = Math.pow(wf, 0.222);
     wf = wf.toFixed(3);
     return wf;
-};
+}
 
-/*function calculatesecs(secs){
-   secs = secs.split(":");
-   return secs[0] * (60 * 60) + secs[1] * 60 + secs[2] * 1;
-};*/
+/*
+Time functions
+ */
 function splittime() {
-    let time = timetosecs();
-    if(time == 0 || document.getElementById('distance').value == 0){
+    if(timetosecs() == 0 || distance.value == 0){
         return 0;
     }
-    time = 500 * (time/document.getElementById('distance').value);
+    let time = 500 * (timetosecs()/distance.value);
     return secstotime(time);
 };
 
 function timetosecs() {
-    let hrs = document.getElementById('hours').value;
-    let mins = document.getElementById('minutes').value;
-    let secs = document.getElementById('seconds').value;
-    return hrs * (60 * 60) + mins * 60 + secs * 1;
+    return hours.value * (60 * 60) + minutes.value * 60 + seconds.value * 1;
 };
 
 function secstotime(totalSeconds) {
@@ -58,6 +55,14 @@ function secstotime(totalSeconds) {
     
 };
 
+function printTime() {
+    let oTime = timetosecs();
+    return secstotime(oTime);
+}
+
+/*
+Weight factor functions
+ */
 function wfdist() {
     let wf = weightf();
     let dist = document.getElementById('distance').value;
@@ -72,24 +77,27 @@ function wftime() {
     return secstotime(wf * time);
 };
 
-function pad(num) {
-    var s = num+"";
-    while (s.length < 2) s = "0" + s;
-    return s;
-}
 
-function printTime() {
-    let oTime = timetosecs();
-    return secstotime(oTime);
-}
 
+
+/*
+Formatting functions
+ */
 function toTitleCase(str) {
     return str.replace(/\w\S*/g, function(txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
 };
 
+function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+};
 
+function pad(num) {
+    var s = num+"";
+    while (s.length < 2) s = "0" + s;
+    return s;
+}
 
 function failedimage() {
     document.getElementById("logo").style.display = "none";
@@ -97,6 +105,9 @@ function failedimage() {
 };
 
 
+/*
+Post function
+ */
 $(document).ready(function() {
     $("button").click(function() {
 
@@ -118,3 +129,10 @@ $(document).ready(function() {
             });
     });
 });
+
+//Retired functions
+/*function calculatesecs(secs){
+/*  secs = secs.split(":");
+/*   return secs[0] * (60 * 60) + secs[1] * 60 + secs[2] * 1;
+/*};
+*/

@@ -103,7 +103,7 @@ do{
 							</div>
 						</div>
 						<input type="hidden" id="key" value="<?php echo $key; ?>">
-						<button onclick="calculator()" class="btn btn-primary" id="pangbutton">Submit</button>
+						<button onclick="output()" class="btn btn-primary pangbutton" id="pangbutton">Submit</button>
 						<div class="row results" id="results">
 							
 						</div>
@@ -123,7 +123,13 @@ do{
 							</tbody>
 						</table>
 					</div>
-				</div>					
+				</div>		
+				<div class="row col-md-offset-4 col-md-8">
+					<div class="form-group col-md-12 weight">
+						<textarea class="form-control" id="resultNotes" placeholder="Notes"></textarea> 
+						<button onclick="output()" class="btn btn-primary pangbutton" id="saveNotes">Save Notes</button>
+					</div>
+				</div>			
 				<div class="row shareLink col-md-12" id="shareLink">	
 					<span>Once you are ready, share the results with your crew: </span>
 					<br>

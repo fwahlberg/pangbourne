@@ -59,13 +59,17 @@ body{
  table thead th{
  	cursor: pointer;
  }
-#pangbutton{
+.pangbutton{
  	border-radius: 0px;
  	background-color: #b71234;
  	border-color: #b71234;
  	width: 100%;
 	color: #fff;
-	
+ }
+
+ #saveNotes{
+  width: 40%;
+  margin-top: 10px;
  }
  #date{
 	 display: none;
